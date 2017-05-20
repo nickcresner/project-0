@@ -1,30 +1,32 @@
 $(() => {
   console.log('JS Loaded');
 
-  // console.log('window width ' + $(window).width());
-
-
   const $map = $('.map');
-  const $body = $('body');
+  const $player1Flag = $('.player-one-flag');
+  const $player2Flag = $('.player-two-flag');
+  const $answerLocation = $('.answer-location');
   let player1ClickX = 0;
   let player1ClickY = 0;
   let player2ClickX = 0;
   let player2ClickY = 0;
   let player1Turn = true;
-  let roundNumber = 0
+  let roundNumber = 0;
   let player1Hypotenuse = 0;
   let player2Hypotenuse = 0;
 
+    // const player1FlagObj = {left: player1ClickX, top: player1ClickY, display: none};
+    // const player2FlagObj = {left: player2ClickX, top: player2ClickY, display: none};
 
-  const $o2Centre = $('#o2');
+
+
+//Questions and Rounds
+
+
   const o2CentreObj = {xLocation: 84, yLocation: 59};
-  const $buckinghamPalace = $('#buckingham-palace');
   const buckinghamPalaceObj = {xLocation: 28, yLocation: 61};
+  const kingsCrossObj = {xLocation: 33, yLocation: 32};
 
-  const questionsArray = [o2CentreObj, buckinghamPalaceObj];
-
-  // console.log(o2CentreObj.xLocation);
-  // console.log(o2CentreObj.yLocation);
+  const questionsArray = [o2CentreObj, buckinghamPalaceObj, kingsCrossObj];
 
 
 //Player1Click Event
@@ -43,21 +45,9 @@ $(() => {
       const player1ClickXPercentOfWindow = Math.round((player1ClickX / $(window).width())*100);
       const player1ClickYPercentOfWindow = Math.round((player1ClickY / $(window).height())*100);
 
-    // console.log(player1ClickXPercentOfWindow);
-    // console.log(player1ClickYPercentOfWindow);
+      console.log(player1ClickXPercentOfWindow);
+      console.log(player1ClickYPercentOfWindow);
 
-//find the right question to ask
-
-
-
-//If player1 clicks on the o2 console.log 'Bullseye!'
-      if (player1ClickXPercentOfWindow === questionsArray[roundNumber].xLocation && player1ClickYPercentOfWindow === questionsArray[roundNumber].yLocation) {
-        console.log('bullseye!');
-      }
-
-      if (player1ClickXPercentOfWindow === buckinghamPalaceObj.xLocation && buckinghamPalaceObj.yLocation) {
-        console.log('Behave Phillip');
-      }
 
 //Distance to target
 
@@ -70,6 +60,8 @@ $(() => {
     // console.log('Player 1 Distance to Target X as % ' + player1distanceToTargetX);
     // console.log('Player 1 Distance to Target Y as % ' + player1distanceToTargetY);
 
+
+//change this to a function that can be called for either player
       player1Hypotenuse = Math.floor(Math.sqrt(Math.pow(player1distanceToTargetX, 2) + Math.pow(player1distanceToTargetY, 2)));
 
       console.log('distance from target ' + player1Hypotenuse);
@@ -80,6 +72,18 @@ $(() => {
 
       player1Turn = false;
       console.log('player 2 turn');
+
+
+      //add a flag at the click location
+
+
+      $player1Flag.css({
+        'left': player1ClickXPercentOfWindow + '%',
+        'top': player1ClickYPercentOfWindow + '%',
+        'display': 'inline'
+      });
+
+
 
     } else {
 
@@ -110,11 +114,32 @@ $(() => {
         console.log('player 2 wins this round!');
       }
 
+// add player 2 flag
+      $player2Flag.css({
+        'left': player2ClickXPercentOfWindow + '%',
+        'top': player2ClickYPercentOfWindow + '%',
+        'display': 'inline'
+      });
 
-      
-      console.log('Player 1 Turn');
-      player1Turn = true;
-      roundNumber += 1;
+
+//reveal target location
+
+      setInterval( () => {
+        $answerLocation.css({
+          'left': questionsArray[roundNumber].xLocation + '%',
+          'top': questionsArray[roundNumber].yLocation + '%',
+          'display': 'inline'
+        });
+      }, 2000);
+
+
+//reveal end of round div
+
+
+
+      // console.log('Player 1 Turn');
+      // player1Turn = true;
+      // roundNumber += 1;
     }
 
   });
@@ -122,3 +147,17 @@ $(() => {
 
 
 });
+
+
+
+
+
+
+//If player1 clicks on the o2 console.log 'Bullseye!'
+      // if (player1ClickXPercentOfWindow === questionsArray[roundNumber].xLocation && player1ClickYPercentOfWindow === questionsArray[roundNumber].yLocation) {
+      //   console.log('bullseye!');
+      // }
+      //
+      // if (player1ClickXPercentOfWindow === buckinghamPalaceObj.xLocation && buckinghamPalaceObj.yLocation) {
+      //   console.log('Behave Phillip');
+      // }
