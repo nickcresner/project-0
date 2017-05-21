@@ -2,9 +2,18 @@ $(() => {
   console.log('JS Loaded');
 
   const $map = $('.map');
+
+  const $question = $('.question');
+  const $roundQuestion = $('.round-question');
+  const $startRoundButton = $('.start-round-button');
   const $player1Flag = $('.player-one-flag');
   const $player2Flag = $('.player-two-flag');
   const $answerLocation = $('.answer-location');
+  const $endOfRound = $('.end-of-round');
+  const $player1Score = $('.player-1-score');
+  const $player2Score = $('.player-2-score');
+  const $nextRoundButton = $('.next-round-button');
+
   let player1ClickX = 0;
   let player1ClickY = 0;
   let player2ClickX = 0;
@@ -14,6 +23,9 @@ $(() => {
   let player1Hypotenuse = 0;
   let player2Hypotenuse = 0;
 
+  let playerOneScore = 0;
+  let playerTwoScore = 0;
+
     // const player1FlagObj = {left: player1ClickX, top: player1ClickY, display: none};
     // const player2FlagObj = {left: player2ClickX, top: player2ClickY, display: none};
 
@@ -22,11 +34,30 @@ $(() => {
 //Questions and Rounds
 
 
-  const o2CentreObj = {xLocation: 84, yLocation: 59};
-  const buckinghamPalaceObj = {xLocation: 28, yLocation: 61};
-  const kingsCrossObj = {xLocation: 33, yLocation: 32};
+  const o2CentreObj = {name: 'The O2 Centre', xLocation: 84, yLocation: 59};
+  const buckinghamPalaceObj = {name: 'Buckingham Palace', xLocation: 28, yLocation: 61};
+  const kingsCrossObj = {name: 'Kings Cross Station', xLocation: 33, yLocation: 32};
 
   const questionsArray = [o2CentreObj, buckinghamPalaceObj, kingsCrossObj];
+
+
+//welcome page
+
+
+
+
+// question div pops up
+
+  setInterval( () => {
+    $question.css({
+      'display': 'inline'
+    });
+
+    //get the name of the landmark from the name value in the object in the array.
+    const roundQuestionName = (questionsArray[roundNumber]).name;
+
+    $roundQuestion.text(roundQuestionName);
+  }, 2000);
 
 
 //Player1Click Event
@@ -135,7 +166,15 @@ $(() => {
 
 //reveal end of round div
 
-
+      setInterval( () => {
+        $endOfRound.css({
+          'display': 'inline',
+          'left': '40%',
+          'top': '25%'
+        });
+        $player1Score.text(playerOneScore);
+        $player2Score.text(playerTwoScore);
+      }, 2000);
 
       // console.log('Player 1 Turn');
       // player1Turn = true;
@@ -143,6 +182,23 @@ $(() => {
     }
 
   });
+
+  $nextRoundButton.on('click', () => {
+    $endOfRound.css({
+      'display': 'none'
+    });
+    $answerLocation.css({
+      'display': 'none'
+    });
+    $player1Flag.css({
+      'display': 'none'
+    });
+    $player2Flag.css({
+      'display': 'none'
+    });
+    roundNumber++;
+
+});
 
 
 

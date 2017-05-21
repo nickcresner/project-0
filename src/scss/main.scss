@@ -1,5 +1,6 @@
 body {
 background: #fff;
+font-family: 'Raleway', sans-serif;
 }
 
 .map{
@@ -14,11 +15,32 @@ background: #fff;
 
 }
 
-.question {
-  display: block;
+.welcome {
+  margin: 20% 30%;
+  width: 400px;
+  height: 200px;
+  display: inline;
+  position: absolute;
+  background-color: white;
+  z-index: 100;
   text-align: center;
-  font-size: 25px;
-  font-family: sans-serif;
+}
+
+.question {
+  margin: 20% 30%;
+  width: 400px;
+  height: 200px;
+  display: none;
+  position: absolute;
+  background-color: white;
+  z-index: 50;
+  text-align: center;
+
+  .start-round-button {
+    margin: 40px;
+    padding: 15px;
+    border: 1px solid lightgrey;
+  }
 }
 
 .player-one-flag {
@@ -43,7 +65,24 @@ background: #fff;
    background-image: url("/images/001-pin.png");
    display: none;
    position: absolute;
-   z-index: 100;
+   z-index: 2;
    background-repeat: no-repeat;
    transform: translate(163%, -20%);
+ }
+
+ .end-of-round {
+   margin: 10% auto;
+   width: 400px;
+   height: 200px;
+   display: none;
+   position: absolute;
+   background-color: white;
+   z-index: 100;
+   text-align: center;
+
+   .next-round-button {
+     margin: 40px;
+     padding: 15px;
+     border: 1px solid lightgrey;
+   }
  }
