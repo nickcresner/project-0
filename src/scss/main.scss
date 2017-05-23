@@ -1,45 +1,86 @@
 body {
-background: #fff;
-font-family: 'Raleway', sans-serif;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  font-family: 'Raleway', sans-serif;
+}
+
+.wrapper {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+
+  &:after {
+    padding-top: 56.25%;
+    display: block;
+    content: '';
+  }
 }
 
 .map{
+  display: block;
   margin: 0 auto;
-  height: 100vh;
   width: 100%;
   background-image: url("/images/HDMapImagery.jpg");
-  background-size:  cover;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
   position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
 
 }
 
 .welcome {
-  margin: 20% 30%;
-  width: 400px;
-  height: 200px;
-  display: inline;
-  position: absolute;
-  background-color: white;
-  z-index: 100;
-  text-align: center;
-}
-
-.question {
-  margin: 20% 30%;
+  @extend .center;
   width: 400px;
   height: 200px;
   display: none;
+
+  background-color: white;
+  z-index: 100;
+  text-align: center;
+  border-radius: 5px;
+
+  h2 {
+    top: 10%;
+  }
+
+  .start-game-button {
+    margin: 40px;
+    padding: 15px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    transform: translate(0, -20px);
+  }
+}
+
+.question {
+  @extend .center;
   position: absolute;
   background-color: white;
   z-index: 50;
   text-align: center;
-
+  border-radius: 5px;
+  display: none;
   .start-round-button {
     margin: 40px;
     padding: 15px;
     border: 1px solid lightgrey;
+    border-radius: 3px;
+    transform: translate(0, -20px);
   }
 }
 
@@ -49,7 +90,7 @@ font-family: 'Raleway', sans-serif;
   position: absolute;
   z-index: 100;
   background-repeat: no-repeat;
-  transform: translate(-22%, -100%);
+  transform: translate(-8%, -85%);
 }
 
 .player-two-flag {
@@ -58,31 +99,60 @@ font-family: 'Raleway', sans-serif;
   position: absolute;
   z-index: 100;
   background-repeat: no-repeat;
-  transform: translate(-22%, -100%);
- }
+  transform: translate(-8%, -85%);
+}
 
- .answer-location {
-   background-image: url("/images/001-pin.png");
-   display: none;
-   position: absolute;
-   z-index: 2;
-   background-repeat: no-repeat;
-   transform: translate(163%, -20%);
- }
+.answer-location {
+  background-image: url("/images/001-pin.png");
+  display: none;
+  position: absolute;
+  z-index: 2;
+  background-repeat: no-repeat;
+  transform: translate(-40%, -80%);
+}
 
- .end-of-round {
-   margin: 10% auto;
-   width: 400px;
-   height: 200px;
-   display: none;
-   position: absolute;
-   background-color: white;
-   z-index: 100;
-   text-align: center;
+.player-twos-turn {
+  @extend .center;
+  display: none;
+  position: absolute;
+  background-color: white;
+  z-index: 100;
+  text-align: center;
+  border-radius: 5px;
 
-   .next-round-button {
-     margin: 40px;
-     padding: 15px;
-     border: 1px solid lightgrey;
-   }
- }
+  .player-twos-turn-button {
+    margin: 40px;
+    padding: 15px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    transform: translate(0, -20px);
+  }
+}
+
+.end-of-round {
+  @extend .center;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 100;
+  text-align: center;
+  border-radius: 5px;
+  display: none;
+
+  .next-round-button {
+    margin: 40px;
+    padding: 15px;
+    border: 1px solid darkgrey;
+    border-radius: 3px;
+    transform: translate(0, -20px);
+  }
+}
+
+.end-of-game {
+  @extend .center;
+  position: absolute;
+  background-color: white;
+  z-index: 50;
+  text-align: center;
+  border-radius: 5px;
+  display: none;
+}
