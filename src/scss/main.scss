@@ -21,17 +21,22 @@ body {
   display: block;
   margin: 0 auto;
   width: 100%;
-  background-image: url("/images/HDMapImagery.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
 
+  &.london {
+    background-image: url("/images/HDMapLondon.jpg");
+  }
+
+  &.manchester {
+    background-image: url("manchesterImage.jpg");
+  }
 }
 
 .center {
@@ -40,13 +45,14 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
+  border: 2px solid lightgrey;
 
 }
 
 .welcome {
   @extend .center;
   width: 400px;
-  height: 200px;
+  height: 300px;
   display: none;
 
   background-color: white;
@@ -64,6 +70,11 @@ body {
     border: 1px solid lightgrey;
     border-radius: 3px;
     transform: translate(0, -20px);
+    background-color: #E8F1F5;
+  }
+  .start-game-button:hover {
+    background-color: #005691;
+    color: white;
   }
 }
 
@@ -75,12 +86,18 @@ body {
   text-align: center;
   border-radius: 5px;
   display: none;
+
   .start-round-button {
     margin: 40px;
     padding: 15px;
     border: 1px solid lightgrey;
     border-radius: 3px;
     transform: translate(0, -20px);
+    background-color: #E8F1F5;
+  }
+  .start-round-button:hover {
+    background-color: #005691;
+    color: white;
   }
 }
 
@@ -121,11 +138,15 @@ body {
   border-radius: 5px;
 
   .player-twos-turn-button {
-    margin: 40px;
+    margin: 30px;
     padding: 15px;
     border: 1px solid lightgrey;
     border-radius: 3px;
-    transform: translate(0, -20px);
+    background-color: #E8F1F5;
+  }
+  .player-twos-turn-button:hover {
+    background-color: #005691;
+    color: white;
   }
 }
 
@@ -144,6 +165,12 @@ body {
     border: 1px solid darkgrey;
     border-radius: 3px;
     transform: translate(0, -20px);
+    background-color: #E8F1F5;
+  }
+
+  .next-round-button:hover {
+    background-color: #005691;
+    color: white;
   }
 }
 
@@ -155,4 +182,16 @@ body {
   text-align: center;
   border-radius: 5px;
   display: none;
+
+  .play-again-button {
+    margin: 40px;
+    padding: 15px;
+    border: 1px solid darkgrey;
+    border-radius: 3px;
+    background-color: #E8F1F5;
+  }
+  .play-again-button:hover {
+    background-color: #005691;
+    color: white;
+  }
 }

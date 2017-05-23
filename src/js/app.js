@@ -4,6 +4,8 @@ $(() => {
   const $map = $('.map');
 
   const $welcome = $('.welcome');
+  const $quizSelect = $('.quiz-select');
+  const $chosenQuiz = $('.chosen-quiz');
   const $startGameButton = $('.start-game-button');
   const $question = $('.question');
   const $roundQuestion = $('.round-question');
@@ -20,12 +22,22 @@ $(() => {
   const $player2Score = $('.player-2-score');
   const $nextRoundButton = $('.next-round-button');
   const $endOfGame = $('.end-of-game');
+  const $p1OverallDistance = $('.p1-overall-distance-from-targets');
+  const $p2OverallDistance = $('.p2-overall-distance-from-targets');
   const $winner = $('.winner');
+  const $playAgainButton = $('.play-again-button');
+
+
+
+  let difficulty = 0;
+  let roundQuestionName = null;
 
   let player1ClickX = 0;
   let player1ClickY = 0;
   let player2ClickX = 0;
   let player2ClickY = 0;
+
+
   let player1Turn = true;
   let roundNumber = 0;
   let player1Hypotenuse = 0;
@@ -37,6 +49,9 @@ $(() => {
   let playerOneScore = 0;
   let playerTwoScore = 0;
 
+  let playerOneOverallDistance = 0;
+  let playerTwoOverallDistance = 0;
+
   let winner = '';
 
 
@@ -45,20 +60,143 @@ $(() => {
 
   //Questions and Rounds
 
+//Easy quiz
+  const questionsObject = {
+    easy: [
+      {
+        name: 'The O2 Centre',
+        xLocation: 82,
+        yLocation: 58
+      },
+      {
+        name: 'Buckingham Palace',
+        xLocation: 29,
+        yLocation: 60
+      },
+      {
+        name: 'Kings Cross Station',
+        xLocation: 37,
+        yLocation: 30
+      },
+      {
+        name: 'General Assembly',
+        xLocation: 54,
+        yLocation: 45
+      },
+      {
+        name: 'Big Ben',
+        xLocation: 36,
+        yLocation: 61
+      }
+    ],
+    medium: [
+      {
+        name: 'Lord\'s Cricket Ground',
+        xLocation: 19,
+        yLocation: 32
+      },
+      {
+        name: 'Chelsea FC',
+        xLocation: 11,
+        yLocation: 81
+      },
+      {
+        name: 'Charlton FC',
+        xLocation: 95,
+        yLocation: 76
+      },
+      {
+        name: 'Lee Valley Velodrome',
+        xLocation: 74,
+        yLocation: 12
+      }
+    ],
+    hard: [
+      {
+        name: 'Baker Street Station',
+        xLocation: 25,
+        yLocation: 38
+      },
+      {
+        name: 'Green Park Station',
+        xLocation: 29,
+        yLocation: 54
+      },
+      {
+        name: 'Farringdon Station',
+        xLocation: 43,
+        yLocation: 41
+      },
+      {
+        name: 'Angel Station',
+        xLocation: 43,
+        yLocation: 29
+      },
+      {
+        name: 'Camden Town Station',
+        xLocation: 28,
+        yLocation: 22
+      }
+    ],
+    veryHard: [
+      {
+        name: 'Granary Square',
+        xLocation: 36,
+        yLocation: 26
+      },
+      {
+        name: 'Finsbury Square',
+        xLocation: 50,
+        yLocation: 40
+      },
+      {
+        name: 'Grosvenor Square',
+        xLocation: 26,
+        yLocation: 49
+      },
+      {
+        name: 'Lincoln Inn\'s Fields',
+        xLocation: 39,
+        yLocation: 45
+      },
+      {
+        name: 'Russell Square',
+        xLocation: 35,
+        yLocation: 39
+      }
+    ]
+  };
 
-  const o2CentreObj = {name: 'The O2 Centre', xLocation: 82, yLocation: 58};
-  const buckinghamPalaceObj = {name: 'Buckingham Palace', xLocation: 28, yLocation: 61};
-  const kingsCrossObj = {name: 'Kings Cross Station', xLocation: 33, yLocation: 32};
-  const generalAssemObj = {name: 'General Assembly', xLocation: 54, yLocation: 45};
-  const questionsArray = [o2CentreObj, buckinghamPalaceObj, kingsCrossObj, generalAssemObj];
+// which set of questions to use?
 
-  let roundQuestionName = (questionsArray[roundNumber]).name;
+  let questionsArray = 0;
+
+  //Get the name of the landmark for each question
 
 
   //welcome page
 
+
   setTimeout(() => {
+
+
+
+
     $welcome.show();
+    $quizSelect.on('change', (e) => {
+      difficulty = $(e.target).val();
+
+      const chosenDifficulty = $(`.quiz-select option[value=${difficulty}]`).html();
+
+      $chosenQuiz.text(chosenDifficulty);
+
+      questionsArray = questionsObject[difficulty];
+
+      // $map.addClass(value from drop down)
+
+      console.log(difficulty);
+
+    });
   }, 1000);
 
   //click start game button to hide the welcome div and show the first question
@@ -67,6 +205,11 @@ $(() => {
     console.log($welcome);
     $welcome.hide();
 
+    roundQuestionName = questionsArray[roundNumber].name;
+
+
+
+
     // question div pops up
 
     setTimeout(() => {
@@ -74,7 +217,7 @@ $(() => {
       $roundQuestion.text(roundQuestionName);
       console.log(roundQuestionName);
       $question.show();
-    }, 500);
+    }, 250);
   });
 
 
@@ -114,7 +257,7 @@ $(() => {
 
 
         //Distance to target
-
+        console.log('questions array [0]', questionsArray[0]);
         const player1distanceToTargetX =  player1ClickXPercentOfWindow - questionsArray[roundNumber].xLocation;
 
 
@@ -213,21 +356,22 @@ $(() => {
           console.log(player1DistanceFromTargetInM);
           console.log(player2DistanceFromTargetInM);
 
+          playerOneOverallDistance += player1DistanceFromTargetInM;
+          playerTwoOverallDistance += player2DistanceFromTargetInM;
+
           $p1DistanceAway.html(player1DistanceFromTargetInM);
           $p2DistanceAway.html(player2DistanceFromTargetInM);
 
           $player1Score.text(playerOneScore);
           $player2Score.text(playerTwoScore);
 
+          $p1OverallDistance.text(playerOneOverallDistance);
+          $p2OverallDistance.text(playerTwoOverallDistance);
+
 
         }, 2000);
 
-
-
         // console.log(roundQuestionName);
-
-
-
 
       }
     }
@@ -252,18 +396,20 @@ $(() => {
     $answerLocation.hide();
     $player1Flag.hide();
     $player2Flag.hide();
+    console.log('questionsArray length' +  questionsArray.length);
 
 
     roundNumber++;
-    console.log(roundNumber);
-    roundQuestionName = (questionsArray[roundNumber]).name;
-    player1Turn = true;
-    $roundQuestion.text(roundQuestionName);
 
-    if (roundNumber === 3) {
+
+    if (roundNumber >= questionsArray.length) {
+      console.log('end game sequence');
       $endOfGame.show();
       $player1Score.text(playerOneScore);
       $player2Score.text(playerTwoScore);
+
+      $p1OverallDistance.text(playerOneOverallDistance);
+      $p2OverallDistance.text(playerTwoOverallDistance);
 
       if (playerOneScore > playerTwoScore) {
         winner = 'Player One';
@@ -271,14 +417,23 @@ $(() => {
         winner = 'Player Two';
       }
       $winner.text(winner);
+      $playAgainButton.on('click', () => {
+        $endOfGame.hide();
+        $welcome.show();
+      });
 
     } else {
+
+      console.log(roundNumber);
+      roundQuestionName = questionsArray[roundNumber].name;
+      player1Turn = true;
+      $roundQuestion.text(roundQuestionName);
 
       setTimeout( () => {
         $question.css({
           'display': 'inline'
         });
-      }, 500);
+      }, 250);
     }
   });
 

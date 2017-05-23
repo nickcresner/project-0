@@ -10,7 +10,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <div class="map">
+    <div class="map london">
       <div class="player-one-flag"><img src="/images/003-flag-1.png"></div>
 
       <div class="player-two-flag"><img src="/images/002-flag-2.png"></div>
@@ -20,8 +20,21 @@
 
 
     <div class="welcome"><h2>Welcome to The Knowledge</h2>
-      <div class="start-game-button"><h2>Start Game</h2></div>
-    </div>
+      <h3>Select game</h3>
+      <form>
+        <label for="quiz-select">Choose difficulty</label>
+        <select class="quiz-select" name="quiz-select">
+          <option selected disabled placeholder="please-choose">Please choose..</option>
+          <option value="easy">Landmarks (easy)</option>
+          <option value="medium">Sporting Venues (medium)</option>
+          <option value="hard">Stations (hard)</option>
+          <option value="veryHard">Squares (very hard)</option>
+        </select>
+      </form>
+      <p>Chosen quiz: <span class="chosen-quiz"></span></p>
+
+    <div class="start-game-button"><h2>Start Game</h2></div>
+  </div>
     <div class="question"><h1>Where is <span class="round-question"></span>?</h1>
       <div class="start-round-button">Player one you're up</div>
     </div>
@@ -37,15 +50,23 @@
       <p>Player Two clicked <span class="p2-distance-away"></span>m away from the target.</p>
       <p>Player One Score: <span class="player-1-score"></span></p>
       <p>Player Two Score: <span class="player-2-score"></span></p>
+      <p>Player One total: <span class="p1-overall-distance-from-targets"></span>m</p>
+      <p>Player Two total: <span class="p2-overall-distance-from-targets"></span>m</p>
       <div class="next-round-button">Next</div>
     </div>
-  </div>
 
-<div class="end-of-game">
-  <h3>End of the Game</h3>
-  <p>Player One total score: <span class="player-1-score"></span></p>
-  <p>Player Two total score: <span class="player-2-score"></span></p>
-  <h3>And the winner is <span class="winner"></span>!</h3>
-</div>
+
+    <div class="end-of-game">
+      <h3>End of the Game</h3>
+      <p>Player One total score: <span class="player-1-score"></span></p>
+      <p>Player Two total score: <span class="player-2-score"></span></p>
+
+      <p>Player One Total: <span class="p1-overall-distance-from-targets">m</span></p>
+      <p>Player Two Total : <span class="p2-overall-distance-from-targets">m</span></p>
+      <h3>And the winner is <span class="winner"></span>!</h3>
+      <div class="play-again-button"><p>Play Again?</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
