@@ -28,6 +28,7 @@
           <option value="london">London</option>
           <option value="new-york">New York</option>
           <option value="madrid">Madrid</option>
+          <option value="hong-kong">Hong Kong</option>
         </select>
 
         <label for="quiz-select"><h4>Choose difficulty</h4></label>
@@ -46,6 +47,11 @@
         </select>
 
         <select class="quiz-select madrid" name="quiz-select madrid">
+          <option selected disabled placeholder="please-choose">Please Choose..</option>
+          <option value="hard">Landmarks (hard)</option>
+        </select>
+
+        <select class="quiz-select hong-kong" name="quiz-select hong-kong">
           <option selected disabled placeholder="please-choose">Please Choose..</option>
           <option value="hard">Landmarks (hard)</option>
         </select>
@@ -84,8 +90,8 @@
       <p>Player One total score: <span class="player-1-score"></span></p>
       <p>Player Two total score: <span class="player-2-score"></span></p>
 
-      <p>Player One Total: <span class="p1-overall-distance-from-targets">m</span></p>
-      <p>Player Two Total : <span class="p2-overall-distance-from-targets">m</span></p>
+      <p>Player One Total: <span class="p1-overall-distance-from-targets"></span>m from the targets</p>
+      <p>Player Two Total : <span class="p2-overall-distance-from-targets"></span>m from the targets</p>
       <h3>And the winner is <span class="winner"></span>!</h3>
       <button class="play-again-button"><p>Play Again?</p>
       </button>

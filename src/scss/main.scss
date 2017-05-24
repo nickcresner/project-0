@@ -41,6 +41,10 @@ body {
   &.madrid {
     background-image: url("/images/MapHDMadrid.jpg");
   }
+
+  &.hong-kong {
+    background-image: url("/images/MapHDHongKong.jpg");
+  }
 }
 
 .center {
@@ -90,6 +94,7 @@ body {
     background-color: #E8F1F5;
     opacity: 0.7;
     font-size: 20px;
+    transition: background-color 0.5s;
 
   }
   .start-game-button:hover {
@@ -107,7 +112,7 @@ body {
   text-align: center;
   border-radius: 5px;
   display: none;
-  height: 175px;
+  height: 200px;
 
   .start-round-button {
     margin: 20px;
@@ -117,6 +122,7 @@ body {
     border-radius: 3px;
     background-color: #E8F1F5;
     font-size: 20px;
+    transition: background-color 0.5s;
   }
   .start-round-button:hover {
     background-color: #005691;
@@ -170,6 +176,7 @@ body {
     border-radius: 3px;
     background-color: #E8F1F5;
     font-size: 20px;
+    transition: background-color 0.5s;
   }
   .player-twos-turn-button:hover {
     background-color: #005691;
@@ -194,6 +201,7 @@ body {
     background-color: #E8F1F5;
     font-size: 20px;
     width: 300px;
+    transition: background-color 0.5s;
   }
 
   .next-round-button:hover {
@@ -219,6 +227,7 @@ body {
     background-color: #E8F1F5;
     font-size: 20px;
     width: 300px;
+    transition: background-color 0.5s;
 
   }
   .play-again-button:hover {

@@ -10,6 +10,7 @@ $(() => {
   const $londonQuizSelect = $('.quiz-select.london');
   const $newYorkQuizSelect = $('.quiz-select.new-york');
   const $madridQuizSelect = $('.quiz-select.madrid');
+  const $hongKongQuizSelect = $('.quiz-select.hong-kong');
   const $chosenQuiz = $('.chosen-quiz');
   const $startGameButton = $('.start-game-button');
   const $question = $('.question');
@@ -259,6 +260,36 @@ $(() => {
     ]
   };
 
+  const hongKongQuestionsObj = {
+    hard: [
+      {
+        name: 'International Commerce Centre (ICC)',
+        xLocation: 57.1,
+        yLocation: 61.9
+      },
+      {
+        name: 'Happy Valley Racecourse',
+        xLocation: 67,
+        yLocation: 88
+      },
+      {
+        name: 'Victoria Peak Tower',
+        xLocation: 52.6,
+        yLocation: 88.9
+      },
+      {
+        name: 'International Finance Centre',
+        xLocation: 56.7,
+        yLocation: 77
+      },
+      {
+        name: 'Hong Kong Disneyland',
+        xLocation: 4.9,
+        yLocation: 53.8
+      }
+    ]
+  };
+
 
 
   // which set of questions to use?
@@ -279,6 +310,7 @@ $(() => {
     $welcome.show();
     $newYorkQuizSelect.hide();
     $madridQuizSelect.hide();
+    $hongKongQuizSelect.hide();
 
 
     $mapSelect.on('change', (e) => {
@@ -293,17 +325,26 @@ $(() => {
         $londonQuizSelect.show();
         $newYorkQuizSelect.hide();
         $madridQuizSelect.hide();
+        $hongKongQuizSelect.hide();
         questionsObject = londonQuestionsObj;
       } else if (city === 'new-york') {
         $londonQuizSelect.hide();
         $newYorkQuizSelect.show();
         $madridQuizSelect.hide();
+        $hongKongQuizSelect.hide();
         questionsObject = newYorkQuestionsObj;
       } else if (city === 'madrid') {
         $londonQuizSelect.hide();
         $newYorkQuizSelect.hide();
         $madridQuizSelect.show();
+        $hongKongQuizSelect.hide();
         questionsObject = madridQuestionsObj;
+      } else if (city === 'hong-kong') {
+        $londonQuizSelect.hide();
+        $newYorkQuizSelect.hide();
+        $madridQuizSelect.hide();
+        $hongKongQuizSelect.show();
+        questionsObject = hongKongQuestionsObj;
       }
     });
 
@@ -325,12 +366,9 @@ $(() => {
   //click start game button to hide the welcome div and show the first question
 
   $startGameButton.on('click', () => {
-    console.log('clickety click!');
     if(!city || !difficulty)
       return false;
 
-
-    console.log($welcome);
     $welcome.hide();
 
     roundQuestionName = questionsArray[roundNumber].name;
@@ -453,6 +491,8 @@ $(() => {
 
         player1DistanceFromTargetInM = (1000 / 6)* player1Hypotenuse;
         player2DistanceFromTargetInM = (1000 / 6)* player2Hypotenuse;
+
+
 
 
         //reveal target location
