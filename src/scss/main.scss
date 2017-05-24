@@ -34,8 +34,8 @@ body {
     background-image: url("/images/HDMapLondon.jpg");
   }
 
-  &.manchester {
-    background-image: url("manchesterImage.jpg");
+  &.new-york {
+    background-image: url("/images/MapHDNewYork.jpg");
   }
 }
 
@@ -52,7 +52,7 @@ body {
 .welcome {
   @extend .center;
   width: 400px;
-  height: 300px;
+  height: 450px;
   display: none;
 
   background-color: white;
@@ -67,10 +67,13 @@ body {
   .start-game-button {
     margin: 40px;
     padding: 15px;
+    width: 300px;
     border: 1px solid lightgrey;
     border-radius: 3px;
     transform: translate(0, -20px);
     background-color: #E8F1F5;
+    font-size: 20px;
+
   }
   .start-game-button:hover {
     background-color: #005691;
@@ -90,10 +93,12 @@ body {
   .start-round-button {
     margin: 40px;
     padding: 15px;
-    border: 1px solid lightgrey;
+    width: 300px;
+    border: 1px solid lightGrey;
     border-radius: 3px;
     transform: translate(0, -20px);
     background-color: #E8F1F5;
+    font-size: 20px;
   }
   .start-round-button:hover {
     background-color: #005691;
@@ -140,9 +145,11 @@ body {
   .player-twos-turn-button {
     margin: 30px;
     padding: 15px;
+    width: 300px;
     border: 1px solid lightgrey;
     border-radius: 3px;
     background-color: #E8F1F5;
+    font-size: 20px;
   }
   .player-twos-turn-button:hover {
     background-color: #005691;

@@ -20,9 +20,16 @@
 
 
     <div class="welcome"><h2>Welcome to The Knowledge</h2>
-      <h3>Select game</h3>
+      <h2>Select game</h2>
       <form>
-        <label for="quiz-select">Choose difficulty</label>
+        <label for="map-select"><h4>Choose city</h4></label>
+        <select class="map-select" name="map-select">
+          <option selected disabled placeholder="please-choose">Please Choose..</option>
+          <option value="london">London</option>
+          <option value="new-york">New York</option>
+        </select>
+
+        <label for="quiz-select"><h4>Choose difficulty</h4></label>
         <select class="quiz-select" name="quiz-select">
           <option selected disabled placeholder="please-choose">Please choose..</option>
           <option value="easy">Landmarks (easy)</option>
@@ -31,17 +38,18 @@
           <option value="veryHard">Squares (very hard)</option>
         </select>
       </form>
+      <p>Chosen map: <span class="chosen-map"></span></p>
       <p>Chosen quiz: <span class="chosen-quiz"></span></p>
 
-    <div class="start-game-button"><h2>Start Game</h2></div>
+    <button class="start-game-button">Start Game</button>
   </div>
     <div class="question"><h1>Where is <span class="round-question"></span>?</h1>
-      <div class="start-round-button">Player one you're up</div>
+      <button class="start-round-button">Player one you're up</button>
     </div>
 
     <div class="player-twos-turn">
       Player 2's turn
-      <div class="player-twos-turn-button">Ok!</div>
+      <button class="player-twos-turn-button">Ok!</button>
     </div>
 
     <div class="end-of-round">
@@ -64,8 +72,8 @@
       <p>Player One Total: <span class="p1-overall-distance-from-targets">m</span></p>
       <p>Player Two Total : <span class="p2-overall-distance-from-targets">m</span></p>
       <h3>And the winner is <span class="winner"></span>!</h3>
-      <div class="play-again-button"><p>Play Again?</p>
-      </div>
+      <button class="play-again-button"><p>Play Again?</p>
+      </button>
     </div>
   </div>
 </body>

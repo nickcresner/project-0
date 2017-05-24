@@ -4,6 +4,8 @@ $(() => {
   const $map = $('.map');
 
   const $welcome = $('.welcome');
+  const $mapSelect = $('.map-select');
+  const $chosenMap = $('.chosen-map')
   const $quizSelect = $('.quiz-select');
   const $chosenQuiz = $('.chosen-quiz');
   const $startGameButton = $('.start-game-button');
@@ -29,7 +31,8 @@ $(() => {
 
 
 
-  let difficulty = 0;
+  let difficulty = null;
+  let city = null;
   let roundQuestionName = null;
 
   let player1ClickX = 0;
@@ -60,7 +63,7 @@ $(() => {
 
   //Questions and Rounds
 
-//Easy quiz
+  //Easy quiz
   const questionsObject = {
     easy: [
       {
@@ -167,7 +170,37 @@ $(() => {
     ]
   };
 
-// which set of questions to use?
+  const NewyorkLandmarksObj = {
+    landmarks: [
+      {
+        name: 'World Trade Center',
+        xLocation: 49,
+        yLocation: 50
+      },
+      {
+        name: 'Empire State Building',
+        xLocation: 58,
+        yLocation: 23
+      },
+      {
+        name: 'Statue of Liberty',
+        xLocation: 38,
+        yLocation: 69
+      },
+      {
+        name: 'Grand Central Station',
+        xLocation: 61,
+        yLocation: 19
+      },
+      {
+        name: 'The Flatiron Building',
+        xLocation: 57,
+        yLocation: 28
+      }
+    ]
+  };
+
+  // which set of questions to use?
 
   let questionsArray = 0;
 
@@ -183,6 +216,17 @@ $(() => {
 
 
     $welcome.show();
+
+    $mapSelect.on('change', (e) => {
+      city = $(e.target).val();
+
+      const chosenCity = $(`.map-select option[value=${city}]`).html();
+
+      $chosenMap.text(chosenCity);
+
+      $map.removeAttr('class').addClass('map').addClass(city);
+    });
+
     $quizSelect.on('change', (e) => {
       difficulty = $(e.target).val();
 
@@ -202,12 +246,15 @@ $(() => {
   //click start game button to hide the welcome div and show the first question
 
   $startGameButton.on('click', () => {
+    console.log('clickety click!');
+    if(!city || !difficulty)
+    return false;
+
+
     console.log($welcome);
     $welcome.hide();
 
     roundQuestionName = questionsArray[roundNumber].name;
-
-
 
 
     // question div pops up
@@ -267,7 +314,7 @@ $(() => {
         player1Hypotenuse = Math.floor(Math.sqrt(Math.pow(player1distanceToTargetX, 2) + Math.pow(player1distanceToTargetY, 2)));
 
 
-//add player one flag
+        //add player one flag
 
         $player1Flag.css({
           'left': player1ClickXPercentOfWindow + '%',
@@ -275,7 +322,7 @@ $(() => {
           'display': 'inline'
         });
 
-//reveal player 2s turn div
+        //reveal player 2s turn div
 
         $player2sTurn.show();
         mapPlayable = false;
@@ -335,7 +382,7 @@ $(() => {
 
 
 
-//reveal target location
+        //reveal target location
 
         setTimeout( () => {
           $answerLocation.css({
@@ -345,7 +392,7 @@ $(() => {
           });
         }, 1000);
 
-//reveal end of round div
+        //reveal end of round div
         setTimeout( () => {
           mapPlayable = false;
           $endOfRound.show();
@@ -389,7 +436,7 @@ $(() => {
 
 
 
-//click on Next Round button
+  //click on Next Round button
   $nextRoundButton.on('click', () => {
 
     $endOfRound.hide();
