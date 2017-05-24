@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Project 0</title>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="public/js/questions.js" charset="utf-8"></script>
   <script src="public/js/app.js" charset="utf-8"></script>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <link rel="stylesheet" href="public/css/main.css">
@@ -20,35 +21,49 @@
 
 
     <div class="welcome"><h2>Welcome to The Knowledge</h2>
-      <h2>Select game</h2>
       <form>
-        <label for="map-select"><h4>Choose city</h4></label>
+        <label for="map-select"><h3>Choose city</h3></label>
         <select class="map-select" name="map-select">
           <option selected disabled placeholder="please-choose">Please Choose..</option>
           <option value="london">London</option>
           <option value="new-york">New York</option>
+          <option value="madrid">Madrid</option>
         </select>
 
         <label for="quiz-select"><h4>Choose difficulty</h4></label>
-        <select class="quiz-select" name="quiz-select">
+        <select class="quiz-select london" name="quiz-select london">
           <option selected disabled placeholder="please-choose">Please choose..</option>
           <option value="easy">Landmarks (easy)</option>
           <option value="medium">Sporting Venues (medium)</option>
           <option value="hard">Stations (hard)</option>
           <option value="veryHard">Squares (very hard)</option>
         </select>
+
+        <select class="quiz-select new-york" name="quiz-select new-york">
+          <option selected disabled placeholder="please-choose">Please Choose..</option>
+          <option value="easy">Landmarks (easy)</option>
+          <option value="hard">Sporting Venues (hard)</option>
+        </select>
+
+        <select class="quiz-select madrid" name="quiz-select madrid">
+          <option selected disabled placeholder="please-choose">Please Choose..</option>
+          <option value="hard">Landmarks (hard)</option>
+        </select>
+
       </form>
+
       <p>Chosen map: <span class="chosen-map"></span></p>
       <p>Chosen quiz: <span class="chosen-quiz"></span></p>
 
-    <button class="start-game-button">Start Game</button>
-  </div>
+
+      <button class="start-game-button">Start Game</button>
+    </div>
     <div class="question"><h1>Where is <span class="round-question"></span>?</h1>
       <button class="start-round-button">Player one you're up</button>
     </div>
 
     <div class="player-twos-turn">
-      Player 2's turn
+      <h1>Player 2's turn</h1>
       <button class="player-twos-turn-button">Ok!</button>
     </div>
 
@@ -60,7 +75,7 @@
       <p>Player Two Score: <span class="player-2-score"></span></p>
       <p>Player One total: <span class="p1-overall-distance-from-targets"></span>m</p>
       <p>Player Two total: <span class="p2-overall-distance-from-targets"></span>m</p>
-      <div class="next-round-button">Next</div>
+      <button class="next-round-button">Next</button>
     </div>
 
 

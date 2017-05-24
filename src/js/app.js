@@ -5,8 +5,11 @@ $(() => {
 
   const $welcome = $('.welcome');
   const $mapSelect = $('.map-select');
-  const $chosenMap = $('.chosen-map')
+  const $chosenMap = $('.chosen-map');
   const $quizSelect = $('.quiz-select');
+  const $londonQuizSelect = $('.quiz-select.london');
+  const $newYorkQuizSelect = $('.quiz-select.new-york');
+  const $madridQuizSelect = $('.quiz-select.madrid');
   const $chosenQuiz = $('.chosen-quiz');
   const $startGameButton = $('.start-game-button');
   const $question = $('.question');
@@ -29,11 +32,11 @@ $(() => {
   const $winner = $('.winner');
   const $playAgainButton = $('.play-again-button');
 
-
-
   let difficulty = null;
   let city = null;
+  let questionsObject = null;
   let roundQuestionName = null;
+
 
   let player1ClickX = 0;
   let player1ClickY = 0;
@@ -60,11 +63,10 @@ $(() => {
 
 
 
-
   //Questions and Rounds
 
   //Easy quiz
-  const questionsObject = {
+  const londonQuestionsObj = {
     easy: [
       {
         name: 'The O2 Centre',
@@ -170,8 +172,8 @@ $(() => {
     ]
   };
 
-  const NewyorkLandmarksObj = {
-    landmarks: [
+  const newYorkQuestionsObj = {
+    easy: [
       {
         name: 'World Trade Center',
         xLocation: 49,
@@ -193,12 +195,71 @@ $(() => {
         yLocation: 19
       },
       {
-        name: 'The Flatiron Building',
-        xLocation: 57,
-        yLocation: 28
+        name: 'Times Square',
+        xLocation: 58.5,
+        yLocation: 14.6
+      }
+    ],
+    hard: [
+      {
+        name: 'Barclay\'s Centre (Brooklyn Nets)',
+        xLocation: 61.7,
+        yLocation: 74.6
+      },
+      {
+        name: 'Madison Square Garden',
+        xLocation: 55.8,
+        yLocation: 20.7
+      },
+      {
+        name: 'Red Bull Arena (New York Red Bull\'s)',
+        xLocation: 3,
+        yLocation: 30.5
+      },
+      {
+        name: 'Wollman Ice Skating Rink',
+        xLocation: 62.2,
+        yLocation: 7.1
+      },
+      {
+        name: 'New York East River Park Track',
+        xLocation: 62.4,
+        yLocation: 43.6
       }
     ]
   };
+
+  const madridQuestionsObj = {
+    hard: [
+      {
+        name: 'Museo Nacional del Prado',
+        xLocation: 55.6,
+        yLocation: 49.8
+      },
+      {
+        name: 'Santiago Bernabéu Stadium',
+        xLocation: 57,
+        yLocation: 12.8
+      },
+      {
+        name: 'Puerta Del Sol',
+        xLocation: 50.96,
+        yLocation: 46.2
+      },
+      {
+        name: 'Museo Nacional Centro de Arte Reina Sofía',
+        xLocation: 54.6,
+        yLocation: 54.8
+      },
+      {
+        name: 'Plaza Meyor',
+        xLocation: 49.4,
+        yLocation: 47.8
+      }
+    ]
+  };
+
+
 
   // which set of questions to use?
 
@@ -216,29 +277,47 @@ $(() => {
 
 
     $welcome.show();
+    $newYorkQuizSelect.hide();
+    $madridQuizSelect.hide();
+
 
     $mapSelect.on('change', (e) => {
       city = $(e.target).val();
-
       const chosenCity = $(`.map-select option[value=${city}]`).html();
 
       $chosenMap.text(chosenCity);
 
       $map.removeAttr('class').addClass('map').addClass(city);
+
+      if (city === 'london') {
+        $londonQuizSelect.show();
+        $newYorkQuizSelect.hide();
+        $madridQuizSelect.hide();
+        questionsObject = londonQuestionsObj;
+      } else if (city === 'new-york') {
+        $londonQuizSelect.hide();
+        $newYorkQuizSelect.show();
+        $madridQuizSelect.hide();
+        questionsObject = newYorkQuestionsObj;
+      } else if (city === 'madrid') {
+        $londonQuizSelect.hide();
+        $newYorkQuizSelect.hide();
+        $madridQuizSelect.show();
+        questionsObject = madridQuestionsObj;
+      }
     });
 
     $quizSelect.on('change', (e) => {
       difficulty = $(e.target).val();
+      console.log('quiz select array in event listener', $quizSelect);
+      console.log(city);
 
-      const chosenDifficulty = $(`.quiz-select option[value=${difficulty}]`).html();
+      const chosenDifficulty = $(`.quiz-select.${city} option[value=${difficulty}]`).html();
 
       $chosenQuiz.text(chosenDifficulty);
 
       questionsArray = questionsObject[difficulty];
 
-      // $map.addClass(value from drop down)
-
-      console.log(difficulty);
 
     });
   }, 1000);
@@ -248,7 +327,7 @@ $(() => {
   $startGameButton.on('click', () => {
     console.log('clickety click!');
     if(!city || !difficulty)
-    return false;
+      return false;
 
 
     console.log($welcome);
@@ -336,8 +415,8 @@ $(() => {
 
         //convert player 2 click to percentage
 
-        const player2ClickXPercentOfWindow = Math.round((player2ClickX / $map.width())*100);
-        const player2ClickYPercentOfWindow = Math.round((player2ClickY / $map.height())*100);
+        const player2ClickXPercentOfWindow = (player2ClickX / $map.width())*100;
+        const player2ClickYPercentOfWindow = (player2ClickY / $map.height())*100;
 
         console.log(player2ClickXPercentOfWindow);
         console.log(player2ClickYPercentOfWindow);
@@ -362,24 +441,18 @@ $(() => {
 
         // Win round logic
         if (player1Hypotenuse < player2Hypotenuse) {
-          console.log('player 1 wins this round!');
+
           playerOneScore ++;
         } else if
         (player1Hypotenuse === player2Hypotenuse) {
-          console.log('its a tie!');
+          playerOneScore ++;
+          playerTwoScore ++;
         } else {
-          console.log('player 2 wins this round!');
           playerTwoScore ++;
         }
 
         player1DistanceFromTargetInM = (1000 / 6)* player1Hypotenuse;
         player2DistanceFromTargetInM = (1000 / 6)* player2Hypotenuse;
-
-        console.log('Player 1 clicked ' + player1DistanceFromTargetInM + 'm away from the target');
-
-        console.log('Player 2 clicked ' + player2DistanceFromTargetInM + 'm away from the target');
-
-
 
 
         //reveal target location
@@ -399,9 +472,6 @@ $(() => {
 
           player1DistanceFromTargetInM = Math.round(player1DistanceFromTargetInM);
           player2DistanceFromTargetInM = Math.round(player2DistanceFromTargetInM);
-
-          console.log(player1DistanceFromTargetInM);
-          console.log(player2DistanceFromTargetInM);
 
           playerOneOverallDistance += player1DistanceFromTargetInM;
           playerTwoOverallDistance += player2DistanceFromTargetInM;
@@ -426,9 +496,6 @@ $(() => {
 
 
 
-
-
-
   $player2sTurnButton.on('click', () => {
     mapPlayable = true;
     $player2sTurn.hide();
@@ -443,8 +510,6 @@ $(() => {
     $answerLocation.hide();
     $player1Flag.hide();
     $player2Flag.hide();
-    console.log('questionsArray length' +  questionsArray.length);
-
 
     roundNumber++;
 
@@ -460,6 +525,8 @@ $(() => {
 
       if (playerOneScore > playerTwoScore) {
         winner = 'Player One';
+      } else if (playerOneScore === playerTwoScore) {
+        winner = 'It\'s a Tie!';
       } else {
         winner = 'Player Two';
       }
@@ -467,6 +534,11 @@ $(() => {
       $playAgainButton.on('click', () => {
         $endOfGame.hide();
         $welcome.show();
+        roundNumber = 0;
+        playerOneOverallDistance = 0;
+        playerTwoOverallDistance = 0;
+        playerOneScore = 0;
+        playerTwoScore = 0;
       });
 
     } else {
