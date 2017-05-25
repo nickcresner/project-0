@@ -7,20 +7,22 @@
   <script src="public/js/questions.js" charset="utf-8"></script>
   <script src="public/js/app.js" charset="utf-8"></script>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada" rel="stylesheet">
   <link rel="stylesheet" href="public/css/main.css">
 </head>
 <body>
   <div class="wrapper">
     <div class="map london">
-      <div class="player-one-flag"><img src="/images/003-flag-1.png"></div>
+      <div class="player-one-flag"><img src="/images/001-placeholder-2.png"></div>
 
-      <div class="player-two-flag"><img src="/images/002-flag-2.png"></div>
+      <div class="player-two-flag"><img src="/images/003-placeholder.png"></div>
 
-      <div class="answer-location"><img src="/images/001-pin.png"></div>
+      <div class="answer-location"><img src="/images/004-target-1.png"></div>
     </div>
 
 
-    <div class="welcome"><h2>Welcome to The Knowledge</h2>
+    <div class="welcome"><h1>City Clickers</h1>
+
       <form>
         <label for="map-select"><h3>Choose city</h3></label>
         <select class="map-select" name="map-select">
@@ -32,7 +34,7 @@
         </select>
 
         <label for="quiz-select"><h4>Choose difficulty</h4></label>
-        <select class="quiz-select london" name="quiz-select london">
+        <select class="quiz-select london selected" name="quiz-select london">
           <option selected disabled placeholder="please-choose">Please choose..</option>
           <option value="easy">Landmarks (easy)</option>
           <option value="medium">Sporting Venues (medium)</option>
@@ -64,9 +66,18 @@
 
       <button class="start-game-button">Start Game</button>
     </div>
+
     <div class="question"><h1>Where is <span class="round-question"></span>?</h1>
       <button class="start-round-button">Player one you're up</button>
     </div>
+
+
+    <div class="countdown-timer"></div>
+
+    <div class="time-up"><h2>Time's Up</h2>
+    <button class="countdown-next-button">Next</button>
+    </div>
+
 
     <div class="player-twos-turn">
       <h1>Player 2's turn</h1>
