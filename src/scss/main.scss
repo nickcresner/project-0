@@ -146,8 +146,8 @@ body {
   display: none;
   top: 20px;
   right: 40px;
-	font-weight: 100;
-	font-size: 50px;
+  font-weight: 100;
+  font-size: 50px;
   width: 100px;
   height: 75px;
   opacity: 0.5;
@@ -295,89 +295,134 @@ img {
 }
 
 @media screen and (max-width: 1030px) {
-    .welcome {
-      width: 250px;
-      height: 250px;
-      display: none;
-      background-color: white;
-      z-index: 100;
-      text-align: center;
-      border-radius: 2px;
-      padding: 5px;
-      // background-image: url("/images/skylinebackground.png");
-      // background-position: bottom center;
-      // background-size: contain;
-      // background-repeat: no-repeat;
+  .welcome {
+    width: 250px;
+    height: 250px;
+    display: none;
+    background-color: white;
+    z-index: 100;
+    text-align: center;
+    border-radius: 2px;
+    padding: 5px;
+    // background-image: url("/images/skylinebackground.png");
+    // background-position: bottom center;
+    // background-size: contain;
+    // background-repeat: no-repeat;
 
-      h1 {
-        font-family: 'Montserrat Subrayada', sans-serif;
-        font-size: 30px;
-        margin: 5px;
+    h1 {
+      font-family: 'Montserrat Subrayada', sans-serif;
+      font-size: 30px;
+      margin: 5px;
 
-      }
-
-      .map-select {
-        font-size: 7.5px;
-      }
-
-      .quiz-select {
-        font-size: 7.5px;
-      }
-
-
-      .start-game-button {
-        margin: 10px;
-        padding: 7.5px;
-        width: 200px;
-        height: 50px;
-        border: 1px solid lightgrey;
-        border-radius: 3px;
-        background-color: #E8F1F5;
-        opacity: 0.7;
-        font-size: 10px;
-        transition: background-color 0.5s;
-
-      }
-      .start-game-button:hover {
-        background-color: #005691;
-        color: white;
-        opacity: 1;
-      }
-
-      h3 {
-        display: none;
-      }
-
-      h4 {
-        display: none;
-      }
     }
 
-    .question {
-      position: absolute;
-      background-color: white;
-      z-index: 50;
-      text-align: center;
-      border-radius: 2px;
-      display: none;
-      height: 100px;
+    .map-select {
+      font-size: 7.5px;
+    }
+
+    .quiz-select {
+      font-size: 7.5px;
+    }
+
+
+    .start-game-button {
+      margin: 10px;
+      padding: 7.5px;
+      width: 200px;
+      height: 50px;
+      border: 1px solid lightgrey;
+      border-radius: 3px;
+      background-color: #E8F1F5;
+      opacity: 0.7;
       font-size: 10px;
+      transition: background-color 0.5s;
 
-      .start-round-button {
-        margin: 10px;
-        padding: 7px;
-        width: 150px;
-        border: 1px solid lightGrey;
-        border-radius: 3px;
-        background-color: #E8F1F5;
-        font-size: 10px;
-        transition: background-color 0.5s;
-      }
-      .start-round-button:hover {
-        background-color: #005691;
-        color: white;
-      }
     }
 
+    h3 {
+      display: none;
+    }
 
+    h4 {
+      display: none;
+    }
+  }
+
+  .question {
+    position: absolute;
+    background-color: white;
+    z-index: 50;
+    text-align: center;
+    border-radius: 2px;
+    display: none;
+    height: 100px;
+    font-size: 10px;
+
+    .start-round-button {
+      margin: 10px;
+      padding: 7px;
+      width: 150px;
+      border: 1px solid lightGrey;
+      border-radius: 3px;
+      background-color: #E8F1F5;
+      font-size: 10px;
+      transition: background-color 0.5s;
+    }
+  }
+
+  .player-twos-turn {
+    border-radius: 2px;
+    height: 70px;
+    width: 175px;
+
+    h1 {
+      font-size: 14px;
+    }
+
+    .player-twos-turn-button {
+      margin: 10px;
+      padding: 7px;
+      width: 150px;
+      border-radius: 3px;
+      font-size: 10px;
+    }
+  }
+
+  .time-up {
+    border-radius: 3px;
+    height: 75px;
+
+    .countdown-next-button {
+      margin: 10px;
+      padding: 7px;
+      width: 150px;
+      font-size: 12px;
+    }
+
+    h2 {
+      font-size: 12px;
+    }
+  }
+
+  .end-of-round {
+
+    font-size: 12px;
+
+    .next-round-button {
+      margin: 10px;
+      padding: 7px;
+      width: 200px;
+
+    }
+  }
+
+.end-of-game{
+  font-size: 12px;
+
+  .play-again-button {
+    margin: 10px;
+    padding: 7px;
+    width: 200px;
+  }
+}
 }

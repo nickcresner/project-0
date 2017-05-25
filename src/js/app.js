@@ -7,10 +7,6 @@ $(() => {
   const $mapSelect = $('.map-select');
   const $chosenMap = $('.chosen-map');
   const $quizSelect = $('.quiz-select');
-  const $londonQuizSelect = $('.quiz-select.london');
-  const $newYorkQuizSelect = $('.quiz-select.new-york');
-  const $madridQuizSelect = $('.quiz-select.madrid');
-  const $hongKongQuizSelect = $('.quiz-select.hong-kong');
   const $chosenQuiz = $('.chosen-quiz');
   const $startGameButton = $('.start-game-button');
   const $question = $('.question');
@@ -38,9 +34,8 @@ $(() => {
 
   let difficulty = null;
   let city = null;
-  let questionsObject = null;
-  let roundQuestionName = null;
 
+  let roundQuestionName = null;
 
   let player1ClickX = 0;
   let player1ClickY = 0;
@@ -63,12 +58,6 @@ $(() => {
   let playerTwoOverallDistance = 0;
 
   let winner = '';
-
-
-
-
-
-
 
   // which set of questions to use?
 
@@ -96,32 +85,6 @@ $(() => {
         .removeClass('selected')
         .filter(`.${city}`)
         .addClass('selected');
-
-      // if (city === 'london') {
-      //   $londonQuizSelect.show();
-      //   $newYorkQuizSelect.hide();
-      //   $madridQuizSelect.hide();
-      //   $hongKongQuizSelect.hide();
-      //   questionsObject = londonQuestionsObj;
-      // } else if (city === 'new-york') {
-      //   $londonQuizSelect.hide();
-      //   $newYorkQuizSelect.show();
-      //   $madridQuizSelect.hide();
-      //   $hongKongQuizSelect.hide();
-      //   questionsObject = newYorkQuestionsObj;
-      // } else if (city === 'madrid') {
-      //   $londonQuizSelect.hide();
-      //   $newYorkQuizSelect.hide();
-      //   $madridQuizSelect.show();
-      //   $hongKongQuizSelect.hide();
-      //   questionsObject = madridQuestionsObj;
-      // } else if (city === 'hong-kong') {
-      //   $londonQuizSelect.hide();
-      //   $newYorkQuizSelect.hide();
-      //   $madridQuizSelect.hide();
-      //   $hongKongQuizSelect.show();
-      //   questionsObject = hongKongQuestionsObj;
-      // }
     });
 
     $quizSelect.on('change', (e) => {
@@ -168,12 +131,6 @@ $(() => {
   let timeRemaining = 30;
 
   function startCountdownTimer() {
-    // if (timerIsRunning) {
-    //
-    //   clearInterval(timerId);
-    //   timerIsRunning = false;
-    //
-    // } else {
 
 
     timerId = setInterval(() => {
@@ -207,10 +164,6 @@ $(() => {
     }
   });
 
-
-
-
-
   //Hide question div
   $startRoundButton.on('click', () => {
     $question.hide();
@@ -224,15 +177,7 @@ $(() => {
   });
 
 
-
-
-
-
   //Player1Click Event
-
-
-
-
   $map.on('click', (e) => {
     if (mapPlayable === true) {
 
@@ -243,8 +188,7 @@ $(() => {
 
 
         //find click coordinates in pixels
-        // console.log(e.pageX);
-        // console.log(e.pageY);
+
         player1ClickX = e.pageX - $(e.target).position().left;
         player1ClickY = e.pageY - $(e.target).position().top;
 
