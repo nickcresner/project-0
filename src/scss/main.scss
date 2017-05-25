@@ -192,6 +192,7 @@ img {
   transform: translate(-50%, -95%);
   width: 30px;
   height: auto;
+  pointer-events: none;
 }
 
 .player-two-flag {
@@ -202,6 +203,7 @@ img {
   transform: translate(-50%, -90%);
   width: 30px;
   height: auto;
+  pointer-events: none;
 }
 
 .answer-location {
@@ -425,4 +427,37 @@ img {
     width: 200px;
   }
 }
+}
+
+.warning {
+  display: none;
+}
+
+@media only screen and (orientation: portrait) {
+  html {
+    height: 100%;
+  }
+  body {
+    background-image: url("/images/skylinebackground.png");
+    background-repeat: no-repeat;
+    background-position: 37% 66%;
+    .warning {
+      display: block;
+      margin: 50% auto;
+      text-align: center;
+      border: 2px solid lightgrey;
+
+      h1 {
+        font-family:'Montserrat Subrayada', sans-serif;
+        font-size: 120px;
+      }
+
+      h3 {
+        font-size: 40px;
+      }
+    }
+    .wrapper {
+      display: none;
+    }
+  }
 }
